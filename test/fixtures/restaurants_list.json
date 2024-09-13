@@ -1,0 +1,20 @@
+{
+    "data": {
+        "search": {
+            "business": [
+                {
+                    "name": "Gordon Ramsay Hell's Kitchen",
+                    "price": "$$$",
+                    "photos": [
+                        "https://s3-media2.fl.yelpcdn.com/bphoto/q771KjLzI5y638leJsnJnQ/o.jpg"
+                    ],
+                    "rating": 4.4,
+                    "is_closed": false,
+                    "location": {
+                        "address1": "3570 Las Vegas Blvd S"
+                    }
+                }
+            ]
+        }
+    }
+}
