@@ -32,4 +32,18 @@ void main() {
       expect(result, isA<Restaurant>());
     },
   );
+  test(
+    'should return a json Map from a model',
+    () async {
+      final Map<String, dynamic> jsonMap =
+          json.decode(fixture('restaurants_list.json'));
+
+      final resutaurantModel =
+          RestaurantModel.fromJson(jsonMap['data']['search']['business'][0]);
+
+      final result = resutaurantModel.toJson();
+
+      expect(result, jsonMap['data']['search']['business'][0]);
+    },
+  );
 }
