@@ -27,5 +27,7 @@ void main() {
 
     expect(result, isRight);
     expect(result, isRightOf(repoResult));
+    verify(restaurantsRepoMock.restaurantsList());
+    verifyNoMoreInteractions(restaurantsRepoMock);
   });
 }
