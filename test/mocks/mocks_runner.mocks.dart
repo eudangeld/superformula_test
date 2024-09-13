@@ -8,6 +8,10 @@ import 'dart:async' as _i4;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:restaurant_tour/core/error/failures.dart' as _i5;
+import 'package:restaurant_tour/features/restaurants/data/data_sources/restaurants_remote_data_source.dart'
+    as _i7;
+import 'package:restaurant_tour/features/restaurants/data/models/restaurant_model.dart'
+    as _i8;
 import 'package:restaurant_tour/features/restaurants/domain/entities/restaurant.dart'
     as _i6;
 import 'package:restaurant_tour/features/restaurants/domain/repositories/restaurants_repository.dart'
@@ -62,4 +66,25 @@ class RestaurantsRepositoryMock extends _i1.Mock
           ),
         )),
       ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.Restaurant>>>);
+}
+
+/// A class which mocks [RestaurantsRemoteDataSource].
+///
+/// See the documentation for Mockito's code generation for more information.
+class RestaurantsRemoteDataSourceMock extends _i1.Mock
+    implements _i7.RestaurantsRemoteDataSource {
+  RestaurantsRemoteDataSourceMock() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<List<_i8.RestaurantModel>> restaurantsList() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #restaurantsList,
+          [],
+        ),
+        returnValue: _i4.Future<List<_i8.RestaurantModel>>.value(
+            <_i8.RestaurantModel>[]),
+      ) as _i4.Future<List<_i8.RestaurantModel>>);
 }
