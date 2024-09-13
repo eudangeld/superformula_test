@@ -10,6 +10,15 @@ class RestaurantModel extends Restaurant {
     required super.address,
   });
 
+  Map<String, dynamic> toJson() => {
+        "name": name,
+        "price": price,
+        "photos": photos,
+        "rating": rating,
+        "is_closed": isCLosed,
+        "location": {"address1": address},
+      };
+
   factory RestaurantModel.fromJson(dynamic data) {
     final List photos = data["photos"] ?? [];
     return RestaurantModel(
