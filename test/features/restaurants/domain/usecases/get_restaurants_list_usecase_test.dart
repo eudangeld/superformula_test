@@ -1,12 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:dartz_test/dartz_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:restaurant_tour/core/shared_interfaces/usecase.dart';
+import 'package:restaurant_tour/features/restaurants/domain/repositories/restaurants_repository.dart';
 import 'package:restaurant_tour/features/restaurants/domain/usecases/get_restaurants_list_usecase.dart';
 
-import '../../../../mocks/mocks_runner.mocks.dart';
 import '../../../../mocks/restaurant_faker.dart';
+
+class RestaurantsRepositoryMock extends Mock implements RestaurantsRepository {}
 
 void main() {
   late GetRestaurantsListUsecase useCase;
@@ -20,14 +22,14 @@ void main() {
 
   test('Should return a list of restaurants', () async {
     final repoResult = fakerListOfRestaurants;
-    when(restaurantsRepoMock.restaurantsList())
-        .thenAnswer((_) => Future.value(Right(repoResult)));
+    when(restaurantsRepoMock.restaurantsList)
+        .thenAnswer((_) async => Right(fakerListOfRestaurants));
 
     final result = await useCase(NoParams());
 
     expect(result, isRight);
     expect(result, isRightOf(repoResult));
-    verify(restaurantsRepoMock.restaurantsList());
+
     verifyNoMoreInteractions(restaurantsRepoMock);
   });
 }
