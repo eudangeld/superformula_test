@@ -20,7 +20,7 @@ class RestaurantsPage extends StatelessWidget {
             EmptyState() => const LoadingStateView(),
             LoadingState() => const LoadingStateView(),
             LoadedState() => const LoadedStateView(),
-            ErrorState() => const ErrorState(),
+            ErrorState() => const ErrorStateView(),
             _ => const SizedBox.shrink(),
           };
         },
@@ -51,8 +51,8 @@ class LoadingStateView extends StatelessWidget {
   }
 }
 
-class ErrorState extends StatelessWidget {
-  const ErrorState({super.key});
+class ErrorStateView extends StatelessWidget {
+  const ErrorStateView({super.key});
 
   @override
   Widget build(BuildContext context) {
