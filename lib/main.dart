@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import './dependency_injection.dart' as di;
 import 'dependency_injection.dart';
 import 'features/restaurants/presentation/bloc/restaurants_bloc.dart';
 import 'features/restaurants/presentation/pages/restaurants_page.dart';
 
 main() async {
+  await dotenv.load(fileName: "assets/.env");
   di.injectDependencies();
   runApp(const RestaurantTour());
 }
