@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurant_tour/dependency_injection.dart';
-import 'package:restaurant_tour/features/restaurants/presentation/bloc/restaurants_bloc.dart';
-import 'package:restaurant_tour/features/restaurants/presentation/bloc/restaurants_events.dart';
-import 'package:restaurant_tour/features/restaurants/presentation/bloc/restaurants_state.dart';
+
+import '../../../../dependency_injection.dart';
+import '../bloc/restaurants_bloc.dart';
+import '../bloc/restaurants_events.dart';
+import '../bloc/restaurants_state.dart';
+import 'state_views/restaurants_error_state_view.dart';
+import 'state_views/restaurants_loaded_state_view.dart';
+import 'state_views/restaurants_loading_state_view.dart';
 
 class RestaurantsPage extends StatelessWidget {
   const RestaurantsPage({super.key});
@@ -26,38 +30,5 @@ class RestaurantsPage extends StatelessWidget {
         },
       ),
     ));
-  }
-}
-
-class LoadedStateView extends StatelessWidget {
-  const LoadedStateView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Loaded'),
-    );
-  }
-}
-
-class LoadingStateView extends StatelessWidget {
-  const LoadingStateView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: CircularProgressIndicator(),
-    );
-  }
-}
-
-class ErrorStateView extends StatelessWidget {
-  const ErrorStateView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: CircularProgressIndicator(),
-    );
   }
 }
