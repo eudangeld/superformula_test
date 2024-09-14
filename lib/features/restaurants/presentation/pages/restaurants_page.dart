@@ -23,7 +23,7 @@ class RestaurantsPage extends StatelessWidget {
           return switch (state) {
             EmptyState() => const LoadingStateView(),
             LoadingState() => const LoadingStateView(),
-            LoadedState() => const LoadedStateView(),
+            LoadedState() => LoadedStateView(state),
             ErrorState() => const ErrorStateView(),
             _ => const SizedBox.shrink(),
           };
