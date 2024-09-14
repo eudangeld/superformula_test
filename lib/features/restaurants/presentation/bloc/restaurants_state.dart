@@ -11,3 +11,5 @@ class LoadedState extends RestaurantState {
 class LoadingState extends RestaurantState {}
 
 class EmptyState extends RestaurantState {}
+
+class ErrorState extends RestaurantState {}
