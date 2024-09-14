@@ -12,8 +12,8 @@ import 'features/restaurants/presentation/bloc/restaurants_bloc.dart';
 final serviceLocator = GetIt.instance;
 
 void injectDependencies() {
-  final graphqlUrl = dotenv.get('BASE_URL');
-  final apiKey = dotenv.get('BASE_URL');
+  final graphqlUrl = dotenv.get('GRAPHQL_API_URL');
+  final apiKey = dotenv.get('API_KEY');
 
   final graphqlLink = HttpLink(
     graphqlUrl,
