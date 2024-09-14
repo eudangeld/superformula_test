@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import '../models/restaurant_model.dart';
@@ -11,29 +12,41 @@ class RestaurantsRemoteSourceImplementation
 
   @override
   Future<List<RestaurantModel>> restaurantsList() async {
-    final QueryResult result =
-        await graphQlClient.query(restaurantsQueryOption);
-    print(result);
+    try {
+      final QueryResult query =
+          await graphQlClient.query(restaurantsQueryOption);
 
-    return [];
+      final List result = query.data?['search']?['business'] ?? [];
+      final response = result
+          .map<RestaurantModel>(
+              (restaurant) => RestaurantModel.fromJson(restaurant))
+          .toList();
+
+      debugPrint('Fetched ${response.length} restaurants');
+
+      return response;
+    } catch (e) {
+      debugPrint('RestaurantsRemoteSourceImplementation ${e.toString()}');
+      throw const ServerException();
+    }
   }
 }
 
 final restaurantsQueryOption =
     QueryOptions(document: gql(_restaurantListQuery));
 const String _restaurantListQuery = '''
-  query Restaurants {
+  query {
   search(location: "Las Vegas") {
     business {
       name
       price
       photos
       rating
+
       is_closed
       location {
         address1
       }
     }
   }
-}
-  ''';
+}''';
