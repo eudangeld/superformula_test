@@ -2,4 +2,5 @@ import 'package:restaurant_tour/features/restaurants/data/models/restaurant_mode
 
 abstract class RestaurantsRemoteDataSource {
   Future<List<RestaurantModel>> restaurantsList();
+  Future<List<RestaurantModel>> restaurantDetails();
 }
