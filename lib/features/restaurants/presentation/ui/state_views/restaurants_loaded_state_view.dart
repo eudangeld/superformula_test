@@ -4,7 +4,7 @@ import '../../bloc/restaurants_state.dart';
 import '../widgets/restaurant_tile_widget.dart';
 
 class LoadedStateView extends StatelessWidget {
-  final LoadedState state;
+  final RestaurantListLoaded state;
 
   const LoadedStateView(this.state, {super.key});
 

@@ -16,7 +16,7 @@ class RestaurantsBloc extends Bloc<RestaurantEvent, RestaurantState> {
     final restaurants = await getRestaurantsUseCase(NoParams());
     restaurants.fold(
       (l) => emit(ErrorState()),
-      (r) => emit(LoadedState(restaurants: r)),
+      (r) => emit(RestaurantListLoaded(restaurants: r)),
     );
   }
 }
