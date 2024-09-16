@@ -18,8 +18,8 @@ const String restaurantListQuery = '''
   }
 }''';
 const String restaurantDetailsQuery = '''
-  query {
-  business(id: "2iTsRqUsPGRH1li1WVRvKQ") {
+  query GetDetails(\$id: String!){
+  business(id:\$id) {
     name
     rating
     price
