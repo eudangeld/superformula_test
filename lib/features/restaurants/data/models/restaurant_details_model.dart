@@ -22,17 +22,17 @@ class RestaurantDetailsModel extends RestaurantDetails {
     final List reviews = data['reviews'] ?? [];
 
     return RestaurantDetailsModel(
-      name: data['name'] ?? 'No name',
-      price: data['price'] ?? '',
+      name: data?['name'] ?? 'No name',
+      price: data?['price'] ?? '',
       photos: photos.map<String>((e) => e).toList(),
-      rating: data['rating'] ?? 0,
+      rating: data?['rating'] ?? 0,
       categories:
-          categories.map<String>((element) => element['title']).toList(),
-      isCLosed: data['is_closed'] ?? true,
-      address: data['location']?['address1'] ?? 'No adrress',
-      postalCode: data['location']?['postal_code'] ?? '',
-      city: data['location']?['city'] ?? '',
-      state: data['location']?['state'] ?? '',
+          categories.map<String>((element) => element?['title'] ?? '').toList(),
+      isCLosed: data?['is_closed'] ?? true,
+      address: data?['location']?['address1'] ?? 'No adrress',
+      postalCode: data?['location']?['postal_code'] ?? '',
+      city: data?['location']?['city'] ?? '',
+      state: data?['location']?['state'] ?? '',
       reviews: reviews
           .map<ReviewModel>((review) => ReviewModel.fromJson(review))
           .toList(),

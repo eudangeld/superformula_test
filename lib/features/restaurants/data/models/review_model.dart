@@ -11,9 +11,9 @@ class ReviewModel extends Review {
   factory ReviewModel.fromJson(dynamic data) {
     return ReviewModel(
       rating: data['rating'],
-      text: data['text'],
-      userName: data['user']['name'],
-      photoUrl: data['user']['image_url'],
+      text: data?['text'] ?? '',
+      userName: data?['user']?['name'] ?? '',
+      photoUrl: data?['user']?['image_url'] ?? '',
     );
   }
 }
