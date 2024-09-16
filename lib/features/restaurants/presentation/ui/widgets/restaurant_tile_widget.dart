@@ -25,7 +25,7 @@ class RestaurantTileWidget extends StatelessWidget {
     const double aspect = 100;
     final size = MediaQuery.of(context).size;
     return InkWell(
-      onTap: _handleTileTap(context),
+      onTap: () => _handleTileTap(context),
       child: Card(
         color: Colors.white,
         child: Row(
