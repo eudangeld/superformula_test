@@ -19,7 +19,9 @@ class RestaurantsBloc extends Bloc<RestaurantEvent, RestaurantState> {
   }
 
   _getRestaurantDetailsEventHandler(
-      GetRestaurantDetailsEvent event, emit) async {
+    GetRestaurantDetailsEvent event,
+    emit,
+  ) async {
     emit(LoadingState());
     final restaurantDetails =
         await getRestaurantDetailsUsecase(event.restaurantId);
@@ -29,7 +31,10 @@ class RestaurantsBloc extends Bloc<RestaurantEvent, RestaurantState> {
     );
   }
 
-  _getRestaurantsListEventHandler(GetRestaurantsListEvent event, emit) async {
+  _getRestaurantsListEventHandler(
+    GetRestaurantsListEvent event,
+    emit,
+  ) async {
     emit(LoadingState());
     final restaurants = await getRestaurantsUseCase(NoParams());
     restaurants.fold(
