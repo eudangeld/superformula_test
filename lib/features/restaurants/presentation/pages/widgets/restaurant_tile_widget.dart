@@ -15,6 +15,7 @@ class RestaurantTileWidget extends StatelessWidget {
     const double aspect = 100;
     final size = MediaQuery.of(context).size;
     return Card(
+      color: Colors.white,
       child: Row(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
