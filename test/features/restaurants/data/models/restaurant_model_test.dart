@@ -9,6 +9,7 @@ import '../../../../fixtures/json_reader.dart';
 void main() {
   /// expected model reading from fixture json
   const testRestaurantModel = RestaurantModel(
+    id: "vHz2RLtfUMVRPFmd7VBEHA",
     name: "Gordon Ramsay Hell's Kitchen",
     categories: [],
     price: "\$\$\$",

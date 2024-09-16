@@ -5,6 +5,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:restaurant_tour/core/shared_interfaces/usecase.dart';
 import 'package:restaurant_tour/features/restaurants/domain/usecases/get_restaurant_details_usecase.dart';
 import 'package:restaurant_tour/features/restaurants/domain/usecases/get_restaurants_list_usecase.dart';
+import 'package:restaurant_tour/features/restaurants/domain/usecases/save_favorite_usecase.dart';
 import 'package:restaurant_tour/features/restaurants/presentation/bloc/restaurants_bloc.dart';
 import 'package:restaurant_tour/features/restaurants/presentation/bloc/restaurants_events.dart';
 import 'package:restaurant_tour/features/restaurants/presentation/bloc/restaurants_state.dart';
@@ -17,18 +18,24 @@ class MockGetRestaurantsListUseCase extends Mock
 class MockGetRestaurantsDetailsUseCase extends Mock
     implements GetRestaurantDetailsUsecase {}
 
+class MockSaveFavoriteUsecase extends Mock implements SaveFavoriteUsecase {}
+
 void main() {
   late final RestaurantsBloc restaurantsBloc;
   late final MockGetRestaurantsListUseCase mockRestaurantsListUseCase;
   late final MockGetRestaurantsDetailsUseCase mockRestaurantsDetailsUseCase;
+  late final MockSaveFavoriteUsecase mockSaveFavoriteUsecase;
 
   setUpAll(() {
     registerFallbackValue(NoParams());
     mockRestaurantsListUseCase = MockGetRestaurantsListUseCase();
     mockRestaurantsDetailsUseCase = MockGetRestaurantsDetailsUseCase();
+    mockSaveFavoriteUsecase = MockSaveFavoriteUsecase();
     restaurantsBloc = RestaurantsBloc(
-        getRestaurantsUseCase: mockRestaurantsListUseCase,
-        getRestaurantDetailsUsecase: mockRestaurantsDetailsUseCase);
+      getRestaurantsUseCase: mockRestaurantsListUseCase,
+      getRestaurantDetailsUsecase: mockRestaurantsDetailsUseCase,
+      saveFavoriteUsecase: mockSaveFavoriteUsecase,
+    );
     when(() => mockRestaurantsListUseCase.call(any())).thenAnswer(
       (realInvocation) async => Right(fakerListOfRestaurants),
     );
