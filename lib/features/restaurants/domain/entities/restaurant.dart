@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Restaurant extends Equatable {
+  final String id;
   final String name;
   final String price;
   final List<String> photos;
@@ -10,6 +11,7 @@ class Restaurant extends Equatable {
   final List<String> categories;
 
   const Restaurant({
+    required this.id,
     required this.name,
     required this.price,
     required this.photos,

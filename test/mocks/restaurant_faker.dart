@@ -6,6 +6,7 @@ List<Restaurant> get fakerListOfRestaurants =>
     List.generate(20, (_) => fakerSingleRestaurantEntity);
 
 Restaurant get fakerSingleRestaurantEntity => Restaurant(
+      id: faker.randomGenerator.string(22),
       name: faker.company.name(),
       categories: [faker.company.name()],
       price: List.generate(random.integer(4), (_) => '\$').join(),
@@ -16,6 +17,7 @@ Restaurant get fakerSingleRestaurantEntity => Restaurant(
     );
 
 RestaurantModel get fakerRestaurantModel => RestaurantModel(
+      id: faker.randomGenerator.string(22),
       name: faker.company.name(),
       categories: [faker.company.name()],
       price: List.generate(random.integer(4), (_) => '\$').join(),

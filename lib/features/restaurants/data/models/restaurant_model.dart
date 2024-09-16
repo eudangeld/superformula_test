@@ -2,6 +2,7 @@ import 'package:restaurant_tour/features/restaurants/domain/entities/restaurant.
 
 class RestaurantModel extends Restaurant {
   const RestaurantModel({
+    required super.id,
     required super.name,
     required super.price,
     required super.photos,
@@ -24,6 +25,7 @@ class RestaurantModel extends Restaurant {
     final List photos = data["photos"] ?? [];
     final List categories = data["categories"] ?? [];
     return RestaurantModel(
+      id: data['id'],
       name: data['name'] ?? 'No name',
       price: data['price'] ?? '',
       photos: photos.map<String>((e) => e).toList(),
