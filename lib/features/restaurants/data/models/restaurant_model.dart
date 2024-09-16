@@ -1,13 +1,14 @@
 import 'package:restaurant_tour/features/restaurants/domain/entities/restaurant.dart';
 
 class RestaurantModel extends Restaurant {
-  RestaurantModel({
+  const RestaurantModel({
     required super.name,
     required super.price,
     required super.photos,
     required super.rating,
     required super.isCLosed,
     required super.address,
+    required super.categories,
   });
 
   Map<String, dynamic> toJson() => {
@@ -21,11 +22,14 @@ class RestaurantModel extends Restaurant {
 
   factory RestaurantModel.fromJson(dynamic data) {
     final List photos = data["photos"] ?? [];
+    final List categories = data["categories"] ?? [];
     return RestaurantModel(
       name: data['name'] ?? 'No name',
       price: data['price'] ?? '',
       photos: photos.map<String>((e) => e).toList(),
       rating: data['rating'] ?? 0,
+      categories:
+          categories.map<String>((element) => element['title']).toList(),
       isCLosed: data['is_closed'] ?? true,
       address: data['location']?['address1'] ?? 'No adrress',
     );
