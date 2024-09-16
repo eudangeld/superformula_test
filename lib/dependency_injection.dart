@@ -1,6 +1,7 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:restaurant_tour/features/restaurants/domain/usecases/get_restaurant_details_usecase.dart';
 
 import 'features/restaurants/data/data_sources/restaurant_remote_data_source_implementation.dart';
 import 'features/restaurants/data/data_sources/restaurants_remote_data_source.dart';
@@ -29,6 +30,10 @@ void injectDependencies() {
       () => RestaurantsRepositoryImpl(remoteDataSource: serviceLocator()));
   serviceLocator.registerLazySingleton(
       () => GetRestaurantsListUsecase(restaurantsRepository: serviceLocator()));
-  serviceLocator.registerLazySingleton(
-      () => RestaurantsBloc(getRestaurantsUseCase: serviceLocator()));
+  serviceLocator.registerLazySingleton(() =>
+      GetRestaurantDetailsUsecase(restaurantsRepository: serviceLocator()));
+  serviceLocator.registerLazySingleton(() => RestaurantsBloc(
+        getRestaurantsUseCase: serviceLocator(),
+        getRestaurantDetailsUsecase: serviceLocator(),
+      ));
 }
