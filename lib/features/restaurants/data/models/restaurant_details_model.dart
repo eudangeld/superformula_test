@@ -3,6 +3,7 @@ import 'review_model.dart';
 
 class RestaurantDetailsModel extends RestaurantDetails {
   RestaurantDetailsModel({
+    required super.id,
     required super.isCLosed,
     required super.rating,
     required super.price,
@@ -22,6 +23,7 @@ class RestaurantDetailsModel extends RestaurantDetails {
     final List reviews = data['reviews'] ?? [];
 
     return RestaurantDetailsModel(
+      id: data?['id'],
       name: data?['name'] ?? 'No name',
       price: data?['price'] ?? '',
       photos: photos.map<String>((e) => e).toList(),

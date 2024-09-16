@@ -13,6 +13,7 @@ class RestaurantModel extends Restaurant {
   });
 
   Map<String, dynamic> toJson() => {
+        "id": id,
         "name": name,
         "price": price,
         "photos": photos,
