@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_tour/features/restaurants/presentation/pages/pages/restaurants_page.dart';
+import 'package:restaurant_tour/features/restaurants/presentation/ui/pages/restaurants_page.dart';
 
 class AppRoutes {
   static const HOME = '/';

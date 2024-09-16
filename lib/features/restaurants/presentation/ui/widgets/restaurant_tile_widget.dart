@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_tour/features/restaurants/domain/entities/restaurant.dart';
-import 'package:restaurant_tour/features/restaurants/presentation/pages/widgets/open_closed_indicator_widget.dart';
-import 'package:restaurant_tour/features/restaurants/presentation/pages/widgets/rating_stars.dart';
+import 'package:restaurant_tour/features/restaurants/presentation/ui/widgets/open_closed_indicator_widget.dart';
+import 'package:restaurant_tour/features/restaurants/presentation/ui/widgets/rating_stars.dart';
 
 import '../../../../../typography.dart';
 

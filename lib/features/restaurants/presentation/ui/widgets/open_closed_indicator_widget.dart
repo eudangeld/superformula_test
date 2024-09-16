@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_tour/features/restaurants/presentation/pages/strings/en_strings.dart';
+import 'package:restaurant_tour/features/restaurants/presentation/ui/strings/en_strings.dart';
 
 import '../../../../../typography.dart';
 
