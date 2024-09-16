@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
+import '../models/restaurant_details_model.dart';
 import '../models/restaurant_model.dart';
 import 'queries/restaurant_queries.dart';
 import 'restaurants_remote_data_source.dart';
@@ -27,14 +28,33 @@ class RestaurantsRemoteSourceImplementation
 
       return response;
     } catch (e) {
-      debugPrint('RestaurantsRemoteSourceImplementation ${e.toString()}');
+      debugPrint(
+          'ERROR: RestaurantsRemoteSourceImplementation -> restaurantsList${e.toString()}');
       throw const ServerException();
     }
   }
 
   @override
-  Future<List<RestaurantModel>> restaurantDetails() {
-    // TODO: implement restaurantDetails
-    throw UnimplementedError();
+  Future<RestaurantDetailsModel> restaurantDetails(String restaurantId) async {
+    try {
+      final QueryResult query = await graphQlClient.query(
+        QueryOptions(
+          variables: {"\$id": restaurantId},
+          document: gql(restaurantDetailsQuery),
+        ),
+      );
+
+      final result = query.data?['business'] ?? {};
+
+      final response = RestaurantDetailsModel.fromJson(result);
+
+      debugPrint('Fetched restaurantID: $restaurantId');
+
+      return response;
+    } catch (e) {
+      debugPrint(
+          'ERROR: RestaurantsRemoteSourceImplementation -> restaurantDetails ${e.toString()}');
+      throw const ServerException();
+    }
   }
 }
