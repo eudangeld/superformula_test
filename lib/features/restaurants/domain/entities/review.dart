@@ -1,8 +1,8 @@
 class Review {
-  final double rating;
-  final double text;
-  final double userName;
-  final double photoUrl;
+  final int rating;
+  final String text;
+  final String userName;
+  final String photoUrl;
 
   Review({
     required this.rating,
