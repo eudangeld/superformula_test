@@ -2,7 +2,7 @@ const String restaurantListQuery = '''
   query {
   search(location: "Las Vegas") {
     business {
-    id
+      id
       name
       price
       photos
@@ -20,6 +20,7 @@ const String restaurantListQuery = '''
 const String restaurantDetailsQuery = '''
   query GetDetails(\$id: String!){
   business(id:\$id) {
+    id
     name
     rating
     price
