@@ -8,10 +8,11 @@ import '../../../../fixtures/json_reader.dart';
 
 void main() {
   /// expected model reading from fixture json
-  final testRestaurantModel = RestaurantModel(
+  const testRestaurantModel = RestaurantModel(
     name: "Gordon Ramsay Hell's Kitchen",
+    categories: [],
     price: "\$\$\$",
-    photos: const [
+    photos: [
       "https://s3-media2.fl.yelpcdn.com/bphoto/q771KjLzI5y638leJsnJnQ/o.jpg",
     ],
     rating: 4.4,

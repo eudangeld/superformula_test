@@ -7,6 +7,7 @@ List<Restaurant> get fakerListOfRestaurants =>
 
 Restaurant get fakerSingleRestaurantEntity => Restaurant(
       name: faker.company.name(),
+      categories: [faker.company.name()],
       price: List.generate(random.integer(4), (_) => '\$').join(),
       photos: [faker.image.loremPicsum()],
       rating: random.decimal(min: 1, scale: 5),
@@ -16,6 +17,7 @@ Restaurant get fakerSingleRestaurantEntity => Restaurant(
 
 RestaurantModel get fakerRestaurantModel => RestaurantModel(
       name: faker.company.name(),
+      categories: [faker.company.name()],
       price: List.generate(random.integer(4), (_) => '\$').join(),
       photos: [faker.image.loremPicsum()],
       rating: random.decimal(min: 1, scale: 5),
