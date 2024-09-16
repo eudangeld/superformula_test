@@ -30,8 +30,9 @@ void main() {
     expect(restaurantsBloc.state, isA<EmptyState>());
   });
   blocTest(
-      'Check state sequency with GetRestaurantsListEvent when Right Usecase returns OK',
-      build: () => restaurantsBloc,
-      act: (bloc) => bloc.add(GetRestaurantsListEvent()),
-      expect: () => [isA<LoadingState>(), isA<LoadedState>()]);
+    'Check state sequency with GetRestaurantsListEvent when Right Usecase returns OK',
+    build: () => restaurantsBloc,
+    act: (bloc) => bloc.add(GetRestaurantsListEvent()),
+    expect: () => [isA<LoadingState>(), isA<RestaurantListLoaded>()],
+  );
 }
