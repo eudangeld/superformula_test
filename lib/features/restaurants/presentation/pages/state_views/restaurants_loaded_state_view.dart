@@ -10,9 +10,13 @@ class LoadedStateView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: state.restaurants.length,
-        itemBuilder: (_, index) =>
-            RestaurantTileWidget(state.restaurants[index]));
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: ListView.separated(
+          separatorBuilder: (context, index) => const SizedBox(height: 5),
+          itemCount: state.restaurants.length,
+          itemBuilder: (_, index) =>
+              RestaurantTileWidget(state.restaurants[index])),
+    );
   }
 }
