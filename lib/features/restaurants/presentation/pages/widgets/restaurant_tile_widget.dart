@@ -74,9 +74,18 @@ class RestaurantTileWidget extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              restaurantEntitie.price,
-                              style: AppTextStyles.openRegularTitle,
+                            Row(
+                              children: [
+                                Text(
+                                  restaurantEntitie.price,
+                                  style: AppTextStyles.openRegularText,
+                                ),
+                                const SizedBox(width: 5),
+                                Text(
+                                  restaurantEntitie.categories.first,
+                                  style: AppTextStyles.openRegularText,
+                                ),
+                              ],
                             ),
                             const SizedBox(height: 5),
                             RatingStarsWidget(
