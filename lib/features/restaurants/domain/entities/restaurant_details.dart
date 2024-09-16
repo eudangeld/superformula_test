@@ -1,6 +1,7 @@
 import 'review.dart';
 
 class RestaurantDetails {
+  final String id;
   final bool isCLosed;
   final double rating;
   final String price;
@@ -14,6 +15,7 @@ class RestaurantDetails {
   final List<Review> reviews;
 
   RestaurantDetails({
+    required this.id,
     required this.isCLosed,
     required this.categories,
     required this.rating,
