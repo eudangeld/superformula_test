@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_tour/features/restaurants/presentation/ui/pages/restaurants_page.dart';
+
+import '../../features/restaurants/presentation/ui/pages/favorites_page.dart';
+import '../../features/restaurants/presentation/ui/pages/restaurants_page.dart';
 
 class AppRoutes {
   static const HOME = '/';
@@ -7,5 +9,6 @@ class AppRoutes {
 
   Map<String, WidgetBuilder> get routesBuilder => {
         HOME: ((context) => const RestaurantsPage()),
+        RESTAURANT_DETAILS: ((context) => const FavoritePage()),
       };
 }
