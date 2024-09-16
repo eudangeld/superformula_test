@@ -18,8 +18,15 @@ class RestaurantsBloc extends Bloc<RestaurantEvent, RestaurantState> {
     on<GetRestaurantDetailsEvent>(_getRestaurantDetailsEventHandler);
   }
 
-  _getRestaurantDetailsEventHandler(GetRestaurantDetailsEvent event, emit) {
+  _getRestaurantDetailsEventHandler(
+      GetRestaurantDetailsEvent event, emit) async {
     emit(LoadingState());
+    final restaurantDetails =
+        await getRestaurantDetailsUsecase(event.restaurantId);
+    restaurantDetails.fold(
+      (l) => emit(ErrorState()),
+      (r) => emit(RestaurantDetailsLoaded(restaurantDetails: r)),
+    );
   }
 
   _getRestaurantsListEventHandler(GetRestaurantsListEvent event, emit) async {
