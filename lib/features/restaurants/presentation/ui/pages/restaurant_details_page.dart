@@ -11,17 +11,14 @@ import '../state_views/restaurants_loading_state_view.dart';
 class RestaurantDetailsPage extends StatelessWidget {
   const RestaurantDetailsPage({super.key});
 
-  _handleBackButton(context) {
-    BlocProvider.of<RestaurantsBloc>(context).add(GetRestaurantsListEvent());
-  }
+  _handleBackButton(context) =>
+      BlocProvider.of<RestaurantsBloc>(context).add(GetRestaurantsListEvent());
 
   @override
   Widget build(BuildContext context) {
     return PopScope(
       canPop: true,
-      onPopInvoked: (bool didPop) async {
-        _handleBackButton(context);
-      },
+      onPopInvoked: (_) async => _handleBackButton(context),
       child: BlocBuilder<RestaurantsBloc, RestaurantState>(
         builder: (_, state) {
           return switch (state) {
