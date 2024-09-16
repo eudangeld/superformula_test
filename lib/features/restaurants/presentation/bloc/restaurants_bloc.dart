@@ -1,14 +1,25 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurant_tour/core/shared_interfaces/usecase.dart';
-import 'package:restaurant_tour/features/restaurants/domain/usecases/get_restaurants_list_usecase.dart';
-import 'package:restaurant_tour/features/restaurants/presentation/bloc/restaurants_events.dart';
-import 'package:restaurant_tour/features/restaurants/presentation/bloc/restaurants_state.dart';
+
+import '../../../../core/shared_interfaces/usecase.dart';
+import '../../domain/usecases/get_restaurant_details_usecase.dart';
+import '../../domain/usecases/get_restaurants_list_usecase.dart';
+import 'restaurants_events.dart';
+import 'restaurants_state.dart';
 
 class RestaurantsBloc extends Bloc<RestaurantEvent, RestaurantState> {
   final GetRestaurantsListUsecase getRestaurantsUseCase;
+  final GetRestaurantDetailsUsecase getRestaurantDetailsUsecase;
 
-  RestaurantsBloc({required this.getRestaurantsUseCase}) : super(EmptyState()) {
+  RestaurantsBloc({
+    required this.getRestaurantsUseCase,
+    required this.getRestaurantDetailsUsecase,
+  }) : super(EmptyState()) {
     on<GetRestaurantsListEvent>(_getRestaurantsListEventHandler);
+    on<GetRestaurantDetailsEvent>(_getRestaurantDetailsEventHandler);
+  }
+
+  _getRestaurantDetailsEventHandler(GetRestaurantDetailsEvent event, emit) {
+    emit(LoadingState());
   }
 
   _getRestaurantsListEventHandler(GetRestaurantsListEvent event, emit) async {
