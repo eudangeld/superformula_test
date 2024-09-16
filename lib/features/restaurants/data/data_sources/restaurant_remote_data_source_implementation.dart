@@ -42,10 +42,12 @@ const String _restaurantListQuery = '''
       price
       photos
       rating
-
       is_closed
       location {
         address1
+      }
+      categories {
+        title
       }
     }
   }
