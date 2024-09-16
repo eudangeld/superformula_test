@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_tour/core/route/app_routes.dart';
-import 'package:restaurant_tour/features/restaurants/domain/entities/restaurant.dart';
-import 'package:restaurant_tour/features/restaurants/presentation/ui/widgets/open_closed_indicator_widget.dart';
-import 'package:restaurant_tour/features/restaurants/presentation/ui/widgets/rating_stars.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/route/app_routes.dart';
 import '../../../../../typography.dart';
+import '../../../domain/entities/restaurant.dart';
+import '../../bloc/restaurants_bloc.dart';
+import '../../bloc/restaurants_events.dart';
+import 'open_closed_indicator_widget.dart';
+import 'rating_stars.dart';
 
 class RestaurantTileWidget extends StatelessWidget {
   final Restaurant restaurantEntitie;
 
   const RestaurantTileWidget(this.restaurantEntitie, {super.key, required});
 
+  _handleTileTap(context) {
+    BlocProvider.of<RestaurantsBloc>(context)
+        .add(GetRestaurantDetailsEvent(restaurantId: restaurantEntitie.id));
+    Navigator.of(context).pushNamed(AppRoutes.RESTAURANT_DETAILS);
+  }
+
   @override
   Widget build(BuildContext context) {
     const double aspect = 100;
     final size = MediaQuery.of(context).size;
     return InkWell(
-      onTap: () =>
-          Navigator.of(context).pushNamed(AppRoutes.RESTAURANT_DETAILS),
+      onTap: _handleTileTap(context),
       child: Card(
         color: Colors.white,
         child: Row(
@@ -115,12 +123,3 @@ class RestaurantTileWidget extends StatelessWidget {
     );
   }
 }
-
-final boxShadow = [
-  BoxShadow(
-    color: Colors.grey.withOpacity(0.3),
-    spreadRadius: 2,
-    blurRadius: 3,
-    offset: const Offset(5, 5), // changes position of shadow
-  ),
-];
