@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurant_tour/features/restaurants/presentation/bloc/restaurants_bloc.dart';
-import 'package:restaurant_tour/features/restaurants/presentation/bloc/restaurants_events.dart';
-import 'package:restaurant_tour/features/restaurants/presentation/bloc/restaurants_state.dart';
 
+import '../../bloc/restaurants_bloc.dart';
+import '../../bloc/restaurants_events.dart';
+import '../../bloc/restaurants_state.dart';
+import '../state_views/restaurant_details_state_view.dart';
 import '../state_views/restaurants_loading_state_view.dart';
 
 class RestaurantDetailsPage extends StatefulWidget {
@@ -32,8 +33,9 @@ class _RestaurantStateDetailsPage extends State<RestaurantDetailsPage> {
           builder: (_, state) {
             return switch (state) {
               LoadingState() => const LoadingStateView(),
-              ErrorState() => const Text('error'),
-              RestaurantDetailsLoaded() => const Text('DETAILS LOADED'),
+              RestaurantDetailsLoaded() => RestaurantDetailsStateView(
+                  state.restaurantDetails,
+                ),
               _ => const SizedBox.shrink(),
             };
           },
