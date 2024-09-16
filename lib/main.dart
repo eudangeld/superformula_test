@@ -9,7 +9,7 @@ import 'features/restaurants/presentation/bloc/restaurants_bloc.dart';
 
 main() async {
   await dotenv.load(fileName: "assets/.env");
-  di.injectDependencies();
+  await di.injectDependencies();
   runApp(const RestaurantTour());
 }
 
