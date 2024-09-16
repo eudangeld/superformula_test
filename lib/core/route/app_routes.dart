@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../features/restaurants/presentation/ui/pages/restaurant_details.dart';
+import '../../features/restaurants/presentation/ui/pages/restaurant_details_page.dart';
 import '../../features/restaurants/presentation/ui/pages/restaurants_page.dart';
 
 class AppRoutes {
