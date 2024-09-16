@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../domain/entities/restaurant.dart';
+import '../../domain/entities/restaurant_details.dart';
 import '../../domain/repositories/restaurants_repository.dart';
 import '../data_sources/restaurants_remote_data_source.dart';
 
@@ -17,6 +18,18 @@ class RestaurantsRepositoryImpl implements RestaurantsRepository {
     try {
       final result = await remoteDataSource.restaurantsList();
 
+      return Right(result);
+    } on Exception catch (_) {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, RestaurantDetails>> restaurantDetails(
+    String restaurantId,
+  ) async {
+    try {
+      final result = await remoteDataSource.restaurantDetails(restaurantId);
       return Right(result);
     } on Exception catch (_) {
       return Left(ServerFailure());
