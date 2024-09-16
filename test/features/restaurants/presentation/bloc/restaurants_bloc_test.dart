@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:restaurant_tour/core/shared_interfaces/usecase.dart';
+import 'package:restaurant_tour/features/restaurants/domain/usecases/get_restaurant_details_usecase.dart';
 import 'package:restaurant_tour/features/restaurants/domain/usecases/get_restaurants_list_usecase.dart';
 import 'package:restaurant_tour/features/restaurants/presentation/bloc/restaurants_bloc.dart';
 import 'package:restaurant_tour/features/restaurants/presentation/bloc/restaurants_events.dart';
@@ -13,15 +14,21 @@ import '../../../../mocks/restaurant_faker.dart';
 class MockGetRestaurantsListUseCase extends Mock
     implements GetRestaurantsListUsecase {}
 
+class MockGetRestaurantsDetailsUseCase extends Mock
+    implements GetRestaurantDetailsUsecase {}
+
 void main() {
   late final RestaurantsBloc restaurantsBloc;
   late final MockGetRestaurantsListUseCase mockRestaurantsListUseCase;
+  late final MockGetRestaurantsDetailsUseCase mockRestaurantsDetailsUseCase;
 
   setUpAll(() {
     registerFallbackValue(NoParams());
     mockRestaurantsListUseCase = MockGetRestaurantsListUseCase();
-    restaurantsBloc =
-        RestaurantsBloc(getRestaurantsUseCase: mockRestaurantsListUseCase);
+    mockRestaurantsDetailsUseCase = MockGetRestaurantsDetailsUseCase();
+    restaurantsBloc = RestaurantsBloc(
+        getRestaurantsUseCase: mockRestaurantsListUseCase,
+        getRestaurantDetailsUsecase: mockRestaurantsDetailsUseCase);
     when(() => mockRestaurantsListUseCase.call(any())).thenAnswer(
       (realInvocation) async => Right(fakerListOfRestaurants),
     );
