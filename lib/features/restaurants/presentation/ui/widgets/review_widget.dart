@@ -54,7 +54,10 @@ class ReviewWidget extends StatelessWidget {
           ],
         ),
         spacer,
-        const Divider(height: .1)
+        const Divider(
+          height: .1,
+          thickness: 0,
+        )
       ],
     );
   }

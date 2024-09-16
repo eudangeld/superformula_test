@@ -18,7 +18,10 @@ class RestaurantDetailsStateView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const divider = Divider(height: .1);
+    const divider = Divider(
+      height: .1,
+      thickness: 0,
+    );
     const spacer = SizedBox(height: 30);
     final size = MediaQuery.of(context).size;
 
