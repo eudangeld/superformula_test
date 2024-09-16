@@ -109,7 +109,6 @@ class RestaurantTileWidget extends StatelessWidget {
                           OpenClosedIndicatorWidget(
                             value: restaurantEntitie.isCLosed,
                           )
-                          // Text('JOSE')
                         ],
                       ),
                     ),
