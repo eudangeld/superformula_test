@@ -47,6 +47,7 @@ class RestaurantTileWidget extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(width: 5),
           SizedBox(
             height: size.height * .14,
             child: Column(
@@ -64,7 +65,7 @@ class RestaurantTileWidget extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: size.width * .55,
+                  width: size.width * .60,
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: Row(

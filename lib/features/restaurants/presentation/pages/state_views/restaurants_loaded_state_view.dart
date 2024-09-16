@@ -11,7 +11,7 @@ class LoadedStateView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: ListView.separated(
         separatorBuilder: (context, index) => const SizedBox(height: 5),
         itemCount: state.restaurants.length,
