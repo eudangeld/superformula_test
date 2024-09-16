@@ -39,7 +39,7 @@ class RestaurantsRemoteSourceImplementation
     try {
       final QueryResult query = await graphQlClient.query(
         QueryOptions(
-          variables: {"\$id": restaurantId},
+          variables: {"id": restaurantId},
           document: gql(restaurantDetailsQuery),
         ),
       );
