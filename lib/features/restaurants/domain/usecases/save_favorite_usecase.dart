@@ -16,8 +16,8 @@ class SaveFavoriteUsecase
   @override
   Future<Either<Failure, RestaurantDetails>> call(
     // ignore: avoid_renaming_method_parameters
-    RestaurantDetails restaurant,
+    RestaurantDetails restaurantDetails,
   ) async {
-    return await favoritesRepository.save(restaurant);
+    return await favoritesRepository.save(restaurantDetails..isFavorite = true);
   }
 }
