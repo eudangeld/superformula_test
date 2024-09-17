@@ -1,6 +1,7 @@
 import 'review.dart';
 
 class RestaurantDetails {
+  bool? isFavorite;
   final String id;
   final bool isCLosed;
   final double rating;
@@ -15,6 +16,7 @@ class RestaurantDetails {
   final List<Review> reviews;
 
   RestaurantDetails({
+    this.isFavorite,
     required this.id,
     required this.isCLosed,
     required this.categories,
