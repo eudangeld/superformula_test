@@ -13,15 +13,23 @@ class FavoritesRepositoryImpl implements FavoritesRepository {
   FavoritesRepositoryImpl({required this.localFavoritesDataSource});
 
   @override
-  Future<void> delete(String id) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<Either<bool, bool>> delete(String id) async {
+    try {
+      await localFavoritesDataSource.delete(id);
+      return const Right(true);
+    } catch (e) {
+      return const Left(false);
+    }
   }
 
   @override
-  Future<Either<Failure, List<Restaurant>>> list() {
-    // TODO: implement list
-    throw UnimplementedError();
+  Future<Either<Failure, List<Restaurant>>> list() async {
+    try {
+      final response = await localFavoritesDataSource.list();
+      return Right(response);
+    } catch (e) {
+      return Left(LocalStorageFailure());
+    }
   }
 
   @override
@@ -40,5 +48,15 @@ class FavoritesRepositoryImpl implements FavoritesRepository {
     );
     await localFavoritesDataSource.save(model);
     return Right(restaurant);
+  }
+
+  @override
+  Future<Either<Failure, bool>> exist(String id) async {
+    try {
+      final result = await localFavoritesDataSource.exist(id);
+      return Right(result);
+    } catch (e) {
+      return Left(LocalStorageFailure());
+    }
   }
 }
