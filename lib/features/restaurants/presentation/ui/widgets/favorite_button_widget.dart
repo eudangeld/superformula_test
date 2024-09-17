@@ -6,8 +6,15 @@ class FavoriteButton extends StatelessWidget {
 
   final bool value;
 
-  final outline = SvgPicture.asset('assets/vectors/heart_outline.svg');
-  final filled = SvgPicture.asset('assets/vectors/heart_filled.svg');
+  final outline = SvgPicture.asset(
+    'assets/vectors/heart_outline.svg',
+    key: const Key('outlineHeartKey'),
+  );
+
+  final filled = SvgPicture.asset(
+    'assets/vectors/heart_filled.svg',
+    key: const Key('filledHeartKey'),
+  );
 
   @override
   Widget build(BuildContext context) {
