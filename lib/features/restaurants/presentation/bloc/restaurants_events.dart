@@ -4,10 +4,18 @@ abstract class RestaurantEvent {}
 
 class GetRestaurantsListEvent extends RestaurantEvent {}
 
-class SaveFavoriteEvent extends RestaurantEvent {
-  final RestaurantDetails restaurant;
+class GetFavoriteListEvent extends RestaurantEvent {}
 
-  SaveFavoriteEvent({required this.restaurant});
+class DeleteFavoriteEvent extends RestaurantEvent {
+  final RestaurantDetails restaurantDetails;
+
+  DeleteFavoriteEvent({required this.restaurantDetails});
+}
+
+class SaveFavoriteEvent extends RestaurantEvent {
+  final RestaurantDetails restaurantDetails;
+
+  SaveFavoriteEvent({required this.restaurantDetails});
 }
 
 class GetRestaurantDetailsEvent extends RestaurantEvent {
