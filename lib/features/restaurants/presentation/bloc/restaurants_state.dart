@@ -16,6 +16,12 @@ class RestaurantListLoaded extends RestaurantState {
   RestaurantListLoaded({required this.restaurants});
 }
 
+class FavoriteListLoaded extends RestaurantState {
+  final List<Restaurant> restaurants;
+
+  FavoriteListLoaded({required this.restaurants});
+}
+
 class LoadingState extends RestaurantState {}
 
 class EmptyState extends RestaurantState {}
