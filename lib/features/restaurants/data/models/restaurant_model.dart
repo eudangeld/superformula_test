@@ -19,6 +19,7 @@ class RestaurantModel extends Restaurant {
         "photos": photos,
         "rating": rating,
         "is_closed": isCLosed,
+        "categories": categories.map((cate) => {"title": cate}).toList(),
         "location": {"address1": address},
       };
 
