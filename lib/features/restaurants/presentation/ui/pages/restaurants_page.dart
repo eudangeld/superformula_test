@@ -11,57 +11,87 @@ import '../state_views/restaurants_loaded_state_view.dart';
 import '../state_views/restaurants_loading_state_view.dart';
 import '../strings/en_strings.dart';
 
-class RestaurantsPage extends StatelessWidget {
+class RestaurantsPage extends StatefulWidget {
   const RestaurantsPage({super.key});
 
   @override
+  State<RestaurantsPage> createState() => _RestaurantsPageState();
+}
+
+class _RestaurantsPageState extends State<RestaurantsPage>
+    with TickerProviderStateMixin {
+  late TabController tabController;
+
+  _onTabValueChange(value) {
+    if (value == 0) {
+      BlocProvider.of<RestaurantsBloc>(context).add(GetRestaurantsListEvent());
+    }
+    if (value == 1) {
+      BlocProvider.of<RestaurantsBloc>(context).add(GetFavoriteListEvent());
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-          appBar: AppBar(
-            title: Text(
-              EnRestaurantsStrings.appName,
-              style: AppTextStyles.loraRegularHeadline,
-            ),
-            bottom: TabBar(
-              labelStyle: AppTextStyles.openRegularTitleSemiBold,
-              tabs: [
-                Tab(
-                  text: EnRestaurantsStrings.allRestaurantsTabTitle,
-                ),
-                Tab(text: EnRestaurantsStrings.favoritesTabTitle),
-              ],
-            ),
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(
+            EnRestaurantsStrings.appName,
+            style: AppTextStyles.loraRegularHeadline,
           ),
-          body: BlocProvider(
-            create: (context) => serviceLocator<RestaurantsBloc>()
-              ..add(GetRestaurantsListEvent()),
-            child: BlocBuilder<RestaurantsBloc, RestaurantState>(
-              builder: (BuildContext context, state) {
-                return TabBarView(
-                  children: [
-                    // list tab state handler
-                    switch (state) {
-                      EmptyState() => const LoadingStateView(),
-                      LoadingState() => const LoadingStateView(),
-                      RestaurantListLoaded() => LoadedStateView(state),
-                      ErrorState() => const ErrorStateView(),
-                      _ => const SizedBox.shrink(),
-                    },
-                    // preferences tab state handler
-                    switch (state) {
-                      EmptyState() => const LoadingStateView(),
-                      LoadingState() => const LoadingStateView(),
-                      RestaurantListLoaded() => LoadedStateView(state),
-                      ErrorState() => const ErrorStateView(),
-                      _ => const SizedBox.shrink(),
-                    }
-                  ],
-                );
-              },
-            ),
-          )),
-    );
+          bottom: TabBar(
+            controller: tabController,
+            onTap: _onTabValueChange,
+            labelStyle: AppTextStyles.openRegularTitleSemiBold,
+            tabs: [
+              Tab(
+                text: EnRestaurantsStrings.allRestaurantsTabTitle,
+              ),
+              Tab(text: EnRestaurantsStrings.favoritesTabTitle),
+            ],
+          ),
+        ),
+        body: BlocProvider(
+          create: (context) =>
+              serviceLocator<RestaurantsBloc>()..add(GetRestaurantsListEvent()),
+          child: BlocConsumer<RestaurantsBloc, RestaurantState>(
+            builder: (BuildContext context, state) {
+              return TabBarView(
+                physics: const NeverScrollableScrollPhysics(),
+                controller: tabController,
+                children: [
+                  // list tab state handler
+                  switch (state) {
+                    EmptyState() => const LoadingStateView(),
+                    LoadingState() => const LoadingStateView(),
+                    RestaurantListLoaded() =>
+                      LoadedStateView(state.restaurants),
+                    ErrorState() => const ErrorStateView(),
+                    _ => const SizedBox.shrink(),
+                  },
+                  // preferences tab state handler
+                  switch (state) {
+                    EmptyState() => const LoadingStateView(),
+                    LoadingState() => const LoadingStateView(),
+                    FavoriteListLoaded() => LoadedStateView(state.restaurants),
+                    ErrorState() => const ErrorStateView(),
+                    _ => const SizedBox.shrink(),
+                  }
+                ],
+              );
+            },
+            listener: (BuildContext context, RestaurantState state) {
+              if (state is RestaurantDetailsLoaded) {
+                tabController.animateTo(0, duration: Duration.zero);
+              }
+            },
+          ),
+        ));
   }
 }
