@@ -4,4 +4,5 @@ abstract class FavoritesLocalDataSource {
   Future<List<RestaurantModel>> list();
   Future<void> save(RestaurantModel restaurant);
   Future<void> delete(String id);
+  Future<bool> exist(String id);
 }

@@ -38,4 +38,14 @@ class FavoritesLocalDataSourceImpl implements FavoritesLocalDataSource {
     localStorage.setString(
         '${favoritesKey}_${restaurant.id}', restaurantString);
   }
+
+  @override
+  Future<bool> exist(String id) async {
+    try {
+      final keys = localStorage.getKeys();
+      return keys.contains('${favoritesKey}_$id');
+    } catch (e) {
+      return false;
+    }
+  }
 }
